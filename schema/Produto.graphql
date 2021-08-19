@@ -4,4 +4,3 @@ type Produto {
   desconto: Float
   precoComDesconto: Float
 }
- 
