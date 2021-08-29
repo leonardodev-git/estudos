@@ -1,8 +1,7 @@
-// Update with your config settings.
-module.exports = {
+const knex = require("knex")({
   client: "mysql",
   connection: {
-    host: '172.17.0.1',
+    host: "172.17.0.1",
     database: "exercicios",
     user: "root",
     password: "1234567",
@@ -14,4 +13,6 @@ module.exports = {
   migrations: {
     tableName: "knex_migrations",
   },
-};
+});
+
+module.exports = knex;
