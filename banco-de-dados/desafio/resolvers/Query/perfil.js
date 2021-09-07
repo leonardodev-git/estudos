@@ -1,10 +1,18 @@
-const db = require('../../config/db')
+const database = require("../../knexfile");
 
 module.exports = {
-    async perfis() {
-        // implementar
-    },
-    async perfil(_, { filtro }) {
-        // implementar
+  async perfis() {
+    return database("perfis");
+  },
+  async perfil(_, { filtro }) {
+    if (!filtro) return null;
+    const { id, nome } = filtro;
+    if (id) {
+      return database("perfis").where({ id }).first();
+    } else if (nome) {
+      return database("perfis").where({ nome }).first();
+    } else {
+      return null;
     }
-}
+  },
+};

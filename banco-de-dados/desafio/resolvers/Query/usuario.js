@@ -1,10 +1,18 @@
-const db = require('../../config/db')
+const database = require("../../knexfile");
 
 module.exports = {
-    async usuarios() {
-        // implementar
-    },
-    async usuario(_, { filtro }) {
-        // implementar
-    },
-}
+   usuarios() {
+    return database("usuarios");
+  },
+   usuario(_, { filtro }) {
+    if (!filtro) return null;
+    const { id, email } = filtro;
+    if (id) {
+      return database("usuarios").where({ id }).first();
+    } else if (email) {
+      return database("usuarios").where({ email }).first();
+    } else {
+      return null;
+    }
+  },
+};
